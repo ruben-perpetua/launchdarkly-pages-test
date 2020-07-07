@@ -8,6 +8,7 @@ import About from './Components/About';
 import Resume from './Components/Resume';
 import Contact from './Components/Contact';
 import Portfolio from './Components/Portfolio';
+import { withLDProvider } from 'launchdarkly-react-client-sdk';
 
 class App extends Component {
 
@@ -56,4 +57,11 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withLDProvider({ 
+	clientSideID: '5f01e1a6a8e6530bce2eb565',
+	user: {
+		"key": "user_key",
+		"name": "User Name",
+		"email": "User@email.com"
+	}
+  })(App);
