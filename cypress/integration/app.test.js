@@ -1,6 +1,6 @@
 context('Visibilities', () => {
 	beforeEach(() => {
-		cy.visit('http://127.0.0.1:3000')
+		cy.visit('https://nordicgiant2.github.io/react-nice-resume-page/index.html')
 	})
 
 	it('Check if scroll down button is working', () => {
