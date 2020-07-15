@@ -7,5 +7,4 @@ workflows:
       - cypress/run
       - store_artifacts:
           path: /root/project/cypress/videos
-            destination:
-              video
+          destination: video
