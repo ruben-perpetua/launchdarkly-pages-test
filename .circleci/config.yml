@@ -17,4 +17,6 @@ workflows:
             branches:
               ignore:
                 - gh-pages
-      - deploy
+      - deploy:
+          requires:
+            - cypress/run
