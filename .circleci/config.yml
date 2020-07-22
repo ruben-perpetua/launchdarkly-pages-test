@@ -6,3 +6,13 @@ workflows:
     jobs:
       - cypress/run:
           store_artifacts: true
+          filters:
+            branches:
+              ignore:
+                - gh-pages
+      - deploy:
+          docker:
+            - image: circleci/node:10.15.0
+          steps:
+            - checkout
+            - run: npm run deploy
