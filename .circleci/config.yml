@@ -6,6 +6,8 @@ jobs:
     docker:
       - image: circleci/node:10.15.0
     steps:
+      - attach_workspace:
+          at: ~/
       - checkout
       - run: npm run deploy
 workflows:
