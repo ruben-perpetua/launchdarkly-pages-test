@@ -1,6 +1,13 @@
 version: 2.1
 orbs:
   cypress: cypress-io/cypress@1
+jobs:
+  deploy:
+    docker:
+      - image: circleci/node:10.15.0
+      steps:
+        - checkout
+        - run: npm run deploy
 workflows:
   build:
     jobs:
@@ -10,9 +17,4 @@ workflows:
             branches:
               ignore:
                 - gh-pages
-      - deploy:
-          docker:
-            - image: circleci/node:10.15.0
-          steps:
-            - checkout
-            - run: npm run deploy
+      - deploy
