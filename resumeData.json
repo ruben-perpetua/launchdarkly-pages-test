@@ -77,6 +77,10 @@
     ],
     "skills":[
       {
+        "name":"JavaScript",
+        "level":"-60%"
+      },
+      {
         "name":"Python",
         "level":"60%"
       },
@@ -102,7 +106,7 @@
       },
       {
         "name":"JAVA",
-        "level":"200%"
+        "level":"80%"
       }
     ]
   },
