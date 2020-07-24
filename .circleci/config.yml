@@ -11,7 +11,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "b1:3f:ab:2f:f5:1c:1a:34:04:5f:8c:e0:a1:31:55:3b"
-      - run: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run: echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run: git config user.email "username@mydomain.com"
       - run: git config user.name "My Name"
       - run: npm run deploy
