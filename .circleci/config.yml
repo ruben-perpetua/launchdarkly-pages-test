@@ -16,15 +16,18 @@ jobs:
       - run: git config user.name "My Name"
       - run: npm run deploy
 workflows:
-  triggers:
-    - filters:
-        branches:
-          ignore:
-            - gh-pages
   build:
     jobs:
       - cypress/run:
           store_artifacts: true
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - deploy:
           requires:
             - cypress/run
+          filters:
+            branches:
+              ignore:
+                - gh-pages
