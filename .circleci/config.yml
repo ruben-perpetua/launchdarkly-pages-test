@@ -22,12 +22,10 @@ workflows:
           store_artifacts: true
           filters:
             branches:
-              ignore:
-                - gh-pages
+              ignore: gh-pages
       - deploy:
           requires:
             - cypress/run
           filters:
             branches:
-              ignore:
-                - gh-pages
+              ignore: gh-pages
