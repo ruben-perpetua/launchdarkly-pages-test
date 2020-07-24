@@ -9,6 +9,8 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+      - run: git config user.email "username@mydomain.com"
+      - run: git config user.name "My Name"
       - run: npm run deploy
 workflows:
   build:
