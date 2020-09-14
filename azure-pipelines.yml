@@ -20,7 +20,6 @@ steps:
   - script: |
       git config --global user.email "devops@diconium.com"
       git config --global user.name "devops"
-      git config --global --add url."git@github.com:".insteadOf "https://github.com/"
     displayName: 'set git config'
 
   - script: |
