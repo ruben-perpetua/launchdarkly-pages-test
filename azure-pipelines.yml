@@ -25,7 +25,8 @@ steps:
 
   - script: |
       npm install
-      npx gh-pages --repo https://$(GITHUB_TOKEN)@github.com/ruben-perpetua/launchdarkly-pages-test -d build -m '[ci skip] Update GH page'
+      npm run build
+      npx gh-pages -d build -m '[ci skip] Update GH page' --repo https://$(GITHUB_TOKEN)@github.com/ruben-perpetua/launchdarkly-pages-test
       # touch ruben.txt
       # git add .
       # git commit -m "test"
