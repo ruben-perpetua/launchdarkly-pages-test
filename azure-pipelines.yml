@@ -20,9 +20,14 @@ steps:
   - script: |
       git config --global user.email "devops@diconium.com"
       git config --global user.name "devops"
+      git checkout master
     displayName: 'set git config'
 
   - script: |
-      npm install
-      npm run deploy
+      # npm install
+      # npm run deploy
+      touch ruben.txt
+      git add .
+      git commit -m "test"
+      git push
     displayName: 'npm install and deploy'
