@@ -24,10 +24,10 @@ steps:
     displayName: 'set git config'
 
   - script: |
-      # npm install
-      # npm run deploy
-      touch ruben.txt
-      git add .
-      git commit -m "test"
-      git push
+      npm install
+      npm run deploy
+      # touch ruben.txt
+      # git add .
+      # git commit -m "test"
+      # git push
     displayName: 'npm install and deploy'
