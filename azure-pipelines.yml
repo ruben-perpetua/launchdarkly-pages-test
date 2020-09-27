@@ -27,8 +27,28 @@ steps:
       npm install
       npm run build
       npx gh-pages -d build -m '[ci skip] Update GH page' --repo https://$(GITHUB_TOKEN)@github.com/ruben-perpetua/launchdarkly-pages-test
-      # touch ruben.txt
-      # git add .
-      # git commit -m "test"
-      # git push
     displayName: 'npm install and deploy'
+
+trigger:
+    - develop
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '10.x'
+    displayName: 'Install Node.js'
+  - checkout: self
+    persistCredentials: true
+
+  - script: |
+      git config --global user.email "devops@diconium.com"
+      git config --global user.name "devops"
+      git checkout master
+    displayName: 'set git config'
+
+  - script: |
+      npm install
+      npm run build
+    displayName: 'npm install and build'
