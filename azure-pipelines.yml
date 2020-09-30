@@ -5,9 +5,13 @@
 
 trigger:
   - master
+  - develop
 
 pool:
   vmImage: 'ubuntu-latest'
+
+variables:
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 steps:
   - task: NodeTool@0
@@ -24,11 +28,16 @@ steps:
     displayName: 'set git config'
 
   - script: |
+      git checkout master
+    displayName: 'checkout master'
+    condition: and(succeeded(), eq(variables.isMain, true))
+
+  - script: |
       npm install
       npm run build
+    displayName: 'npm install and build'
+
+  - script: |
       npx gh-pages -d build -m '[ci skip] Update GH page' --repo https://$(GITHUB_TOKEN)@github.com/ruben-perpetua/launchdarkly-pages-test
-      # touch ruben.txt
-      # git add .
-      # git commit -m "test"
-      # git push
-    displayName: 'npm install and deploy'
+    displayName: 'npm deploy'
+    condition: and(succeeded(), eq(variables.isMain, true))
