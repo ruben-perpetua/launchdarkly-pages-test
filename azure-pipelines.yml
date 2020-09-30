@@ -5,9 +5,13 @@
 
 trigger:
   - master
+  - develop
 
 pool:
   vmImage: 'ubuntu-latest'
+
+variables:
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
 
 steps:
   - task: NodeTool@0
@@ -24,31 +28,16 @@ steps:
     displayName: 'set git config'
 
   - script: |
-      npm install
-      npm run build
-      npx gh-pages -d build -m '[ci skip] Update GH page' --repo https://$(GITHUB_TOKEN)@github.com/ruben-perpetua/launchdarkly-pages-test
-    displayName: 'npm install and deploy'
-
-trigger:
-    - develop
-pool:
-  vmImage: 'ubuntu-latest'
-
-steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '10.x'
-    displayName: 'Install Node.js'
-  - checkout: self
-    persistCredentials: true
-
-  - script: |
-      git config --global user.email "devops@diconium.com"
-      git config --global user.name "devops"
       git checkout master
-    displayName: 'set git config'
+    displayName: 'checkout master'
+    condition: and(succeeded(), eq(variables.isMain, true))
 
   - script: |
       npm install
       npm run build
     displayName: 'npm install and build'
+
+  - script: |
+      npx gh-pages -d build -m '[ci skip] Update GH page' --repo https://$(GITHUB_TOKEN)@github.com/ruben-perpetua/launchdarkly-pages-test
+    displayName: 'npm deploy'
+    condition: and(succeeded(), eq(variables.isMain, true))
