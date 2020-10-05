@@ -41,3 +41,10 @@ steps:
       npx gh-pages -d build -m '[ci skip] Update GH page' --repo https://$(GITHUB_TOKEN)@github.com/ruben-perpetua/launchdarkly-pages-test
     displayName: 'npm deploy'
     condition: and(succeeded(), eq(variables.isMain, true))
+
+  - task: Npm@1
+    inputs:
+      command: publish
+      publishRegistry: useFeed
+      publishFeed: RubenPerpetua/devopsFeed
+    condition: and(succeeded(), eq(variables.isMain, true))
