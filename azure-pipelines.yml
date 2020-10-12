@@ -18,6 +18,11 @@ steps:
     inputs:
       versionSpec: '10.x'
     displayName: 'Install Node.js'
+  - task: Npm@1
+    inputs:
+      command: publish
+      publishRegistry: useFeed
+      publishFeed: RubenPerpetua/devopsFeed
   - checkout: self
     persistCredentials: true
 
@@ -42,9 +47,7 @@ steps:
     displayName: 'npm deploy'
     condition: and(succeeded(), eq(variables.isMain, true))
 
-  - task: Npm@1
-    inputs:
-      command: publish
-      publishRegistry: useFeed
-      publishFeed: RubenPerpetua/devopsFeed
+  - script: |
+      npm publish
+    displayName: 'npm publish'
     condition: and(succeeded(), eq(variables.isMain, true))
