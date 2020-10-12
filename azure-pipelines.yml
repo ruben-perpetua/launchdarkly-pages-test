@@ -18,11 +18,11 @@ steps:
     inputs:
       versionSpec: '10.x'
     displayName: 'Install Node.js'
-  - task: Npm@1
-    inputs:
-      command: publish
-      publishRegistry: useFeed
-      publishFeed: RubenPerpetua/devopsFeed
+  # - task: Npm@1
+  #   inputs:
+  #     command: publish
+  #     publishRegistry: useFeed
+  #     publishFeed: RubenPerpetua/devopsFeed
   - checkout: self
     persistCredentials: true
 
