@@ -47,4 +47,5 @@ steps:
       command: publish
       publishRegistry: useFeed
       publishFeed: RubenPerpetua/devopsFeed
+    displayName: 'Publishing Feed'
     condition: and(succeeded(), eq(variables.isMain, true))
